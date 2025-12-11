@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me – Adid Rizal</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f6f6f6;
+            color: #333;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .dark {
+            background: #1e1e1e;
+            color: #f1f1f1;
+        }
+
+        header {
+            padding: 20px;
+            text-align: center;
+            background: #ffffff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+        }
+
+        .dark header {
+            background: #2a2a2a;
+        }
+
+        h1 {
+            margin: 10px 0 0;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        .section {
+            background: white;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: 0.6s ease;
+        }
+
+        .dark .section {
+            background: #2a2a2a;
+        }
+
+        .show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .toggle-btn {
+            cursor: pointer;
+            padding: 10px 18px;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            background: #333;
+            color: white;
+            transition: 0.3s;
+        }
+
+        .dark .toggle-btn {
+            background: #ddd;
+            color: #000;
+        }
+
+        a {
+            color: #0077ff;
+            text-decoration: none;
+        }
+
+        .dark a {
+            color: #66aaff;
+        }
+
+        .image-section {
+            width: 100%;
+            text-align: center;
+            margin: 15px 0;
+        }
+
+        .image-section img {
+            width: 220px;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 50%;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            transition: 0.3s;
+        }
+
+        .image-section img:hover {
+            transform: scale(1.05);
+        }
+
+        
+        .modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.8);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal img {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+}
+
+.modal.show {
+    display: flex;
+}
+
+
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>About Me</h1>
+    <p>Website Pribadi • Adid Rizal</p>
+    <button class="toggle-btn" onclick="toggleDarkMode()">Toggle Dark Mode</button>
+</header>
+
+
+<div class="container">
+
+    <div class="section">
+        <h2>Halo, Saya Adid Rizal 👋</h2>
+        <p>Aku adalah mahasiswa prodi <b>Bisnis Digital</b> di Politeknik Caltex Riau.  
+        Aku memiliki ketertarikan pada dunia teknologi, bisnis, dan pengembangan diri.</p>
+    </div>
+
+    <!-- Modal tampilan foto fullscreen -->
+    <div class="modal" id="photoModal">
+        <img id="modalImage" src="adid4.jpg" alt="Full Photo">
+    </div>
+
+    <div class="section image-section">
+        <img src="adid4.jpg" alt="Foto Adid Rizal" onclick="showPhoto()">
+    </div>
+
+
+    <div class="section">
+        <h2>Hobi & Minat</h2>
+        <p>Saya suka olahraga, khususnya olahraga dengan kategori bola kecil seperti:</p>
+        <ul>
+            <li>Badminton</li>
+            <li>Tenis Meja</li>
+            <li>Dan lainnya</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>Media Sosial</h2>
+        <p>Instagram: <a href="https://instagram.com/adid.pandau5" target="_blank">@adid.pandau5</a></p>
+    </div>
+
+</div>
+
+
+<script>
+    // INTERAKSI: Fade-in saat di-scroll
+    const sections = document.querySelectorAll('.section');
+    function revealSections() {
+        sections.forEach(sec => {
+            const top = sec.getBoundingClientRect().top;
+            if (top < window.innerHeight - 50) {
+                sec.classList.add('show');
+            }
+        });
+    }
+    window.addEventListener('scroll', revealSections);
+    window.addEventListener('load', revealSections);
+
+
+    // INTERAKSI: Dark Mode Toggle
+    function toggleDarkMode() {
+        document.body.classList.toggle('dark');
+    }
+
+    function showPhoto() {
+    const modal = document.getElementById("photoModal");
+    modal.classList.add("show");
+
+    // klik background untuk menutup
+    modal.onclick = () => {
+        modal.classList.remove("show");
+    };
+}
+
+
+</script>
+
+</body>
+</html>
+<!-- <img src="adid2.jpg" alt="Foto Adid Rizal" onclick="showPhoto()">
+        <img src="adid3.jpg" alt="Foto Adid Rizal" onclick="showPhoto()">
+        <img src="adid4.jpg" alt="Foto Adid Rizal" onclick="showPhoto()">
+        <img src="adid5.jpg" alt="Foto Adid Rizal" onclick="showPhoto()">
+        <img src="adid6.jpg" alt="Foto Adid Rizal" onclick="showPhoto()">
+<img id="modalImage" src="adid2.jpg" alt="Full Photo">
+        <img id="modalImage" src="adid3.jpg" alt="Full Photo">
+        <img id="modalImage" src="adid4.jpg" alt="Full Photo">
+        <img id="modalImage" src="adid5.jpg" alt="Full Photo">
+        <img id="modalImage" src="adid6.jpg" alt="Full Photo"> -->
